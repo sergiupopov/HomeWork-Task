@@ -1,0 +1,24 @@
+- hosts:  HomeWork-Task
+  tasks:
+
+    - name: Install apache httpd  (state=present is optional)
+      apt:
+       name: apache2
+       state: latest
+       update-cache: yes
+    
+    - name: "web Server start"
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+    - name: Install unzip
+      apt:
+        name: unzip
+        state: latest
+
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: https://www.free-css.com/assets/files/free-css-templates/download/page9/earthy.zip
+        dest: /var/www/html
+        remote_src: yes
